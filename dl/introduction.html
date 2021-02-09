@@ -1,0 +1,2418 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Introduction to Deep Learning &#8212; Deep Learning for Molecules and Materials</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="2. Classification" href="../ml/classification.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Deep Learning for Molecules and Materials</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  A. Math Review
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/tensors-and-shapes.html">
+   1. Tensors and Shapes
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  B. Machine Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml/introduction.html">
+   1. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml/classification.html">
+   2. Classification
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  C. Deep Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Introduction to Deep Learning
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M4Z0M1J0GT"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-M4Z0M1J0GT'); </script> Made with <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/dl/introduction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/quanta-mental/Research"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/quanta-mental/Research/master?urlpath=tree/dl/introduction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/quanta-mental/Research/blob/master/dl/introduction.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-networks">
+   1.1. Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#universal-approximation-theorem">
+     1.1.1. Universal Approximation Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frameworks">
+   1.2. Frameworks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion">
+   1.3. Discussion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#revisiting-solubity-model">
+   1.4. Revisiting Solubity Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-this-notebook">
+   1.5. Running This Notebook
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     1.5.1. Load Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-data-for-keras">
+   1.6. Prepare Data for Keras
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-network">
+   1.7. Neural Network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chapter-summary">
+   1.8. Chapter Summary
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-deep-learning">
+<h1><span class="section-number">1. </span>Introduction to Deep Learning<a class="headerlink" href="#introduction-to-deep-learning" title="Permalink to this headline">¶</a></h1>
+<p><strong>Deep learning</strong> is a category of <strong>machine learning</strong>. Machine learning is a category of <strong>artificial intelligence</strong>. These notes are mostly about deep learning, thus the name of the book. Deep learning is the use of neural networks to classify and regress data (this is too narrow, but a good starting place). I am a chemical engineering professor though; writing an introduction to deep learning is a hopeless task for me. I found the introduction the from <a class="reference external" href="https://www.deeplearningbook.org/contents/intro.html">Ian Goodfellow’s book</a> to be a good intro. If you’re more visually oriented, Grant Sanderson has made a <a class="reference external" href="https://www.youtube.com/watch?v=aircAruvnKk">short video series</a> specifically about neural networks that give an applied introduction to the topic. DeepMind has a high-level video showing what can be accomplished with <a class="reference external" href="https://www.youtube.com/watch?v=7R52wiUgxZI">deep learning &amp; AI</a>. When people write “deep learning is really cool” in their research papers, they typically cite <a class="reference external" href="https://www.nature.com/articles/nature14539">this Nature paper</a> by Yann LeCun, Yoshua Bengio, and Geoffery Hinton. Zhang, Lipton, Li, and Smola have written a practical and example-driven <a class="reference external" href="http://d2l.ai/index.html">online book</a> that gives each example in Tensorflow, PyTorch, and MXNet.</p>
+<p>The main advice I would give to beginners in deep learning are to focus less on the neurological inspired language (i.e., connections between neurons), and instead view deep learning as a series of linear algebra operations where many of the matrices are filled with adjustable parameters. There are of course a few non-linear functions (activations) here and there, but deep learning is essentially linear algebra operations specified via a graph (network kind) that vaguely looks like neurons in a brain.</p>
+<div class="section" id="neural-networks">
+<h2><span class="section-number">1.1. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>The <em>deep</em> in deep learning means we have many layers in our neural networks. What is a neural network? Without loss of generality, we can view neural networks as 2 components: (1) a non-linear function <span class="math notranslate nohighlight">\(g(\cdot)\)</span> which operates on our input features <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and outputs a new set of features <span class="math notranslate nohighlight">\(\mathbf{H} = g(\mathbf{X})\)</span> and (2) a linear model like we saw in our Machine Learning chapter. Our model equation for deep learning regression is:</p>
+<p>\begin{equation}
+y = \vec{w}g(\vec{x}) + b
+\end{equation}</p>
+<p>One of the main discussion points in our ML chapters was how arcane and difficult it is to choose features. Here, we have replaced our features with a set of trainable features <span class="math notranslate nohighlight">\(g(\vec{x})\)</span> and then use the same linear model as before. So how do we design <span class="math notranslate nohighlight">\(g(\vec{x})\)</span>? That is the deep learning part. <span class="math notranslate nohighlight">\(g(\vec{x})\)</span> is a differentiable function we design composed of <strong>layers</strong>, which are themselves differentiable functions each with trainable weights (variables). Deep learning is a mature field and there is a set of standard layers, each with a different purpose. For example, convolution layers look at a fixed neighborhood around each element of an input tensor. Dropout layers randomly inactivate inputs as a form of regularization. The most commonly used and basic layer is the <strong>dense</strong> or <strong>fully-connected</strong> layer.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Dense means each input element affects each output element. At one point, sparse layers were popular and had a nice analogy with how a brain is connected. However, dense layers do not require deciding which input/output connections to make and sparse layers are very rare now (except incidentally sparse layers, like convolutions).</p>
+</div>
+<p>A dense layer is defined by two things: the desired output feature shape and the <strong>activation</strong>. The equation is:</p>
+<p>\begin{equation}
+\vec{h} = \sigma(\mathbf{W}\vec{x} + \vec{b})
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{W}\)</span> is a trainable <span class="math notranslate nohighlight">\(D \times F\)</span> matrix, where <span class="math notranslate nohighlight">\(D\)</span> is the input vector (<span class="math notranslate nohighlight">\(\vec{x}\)</span>) dimension and <span class="math notranslate nohighlight">\(F\)</span> is the output vector (<span class="math notranslate nohighlight">\(\vec{h}\)</span>) dimension, <span class="math notranslate nohighlight">\(\vec{b}\)</span> is a trainable <span class="math notranslate nohighlight">\(F\)</span> dimensional vector, and <span class="math notranslate nohighlight">\(\sigma(\cdot)\)</span> is the activation function. <span class="math notranslate nohighlight">\(F\)</span> is an example of a <strong>hyperparameter</strong>, it is not trainable but is a problem dependent choice. <span class="math notranslate nohighlight">\(\sigma(\cdot)\)</span> is another hyperparameter. In principle, any differentiable function that has a range of <span class="math notranslate nohighlight">\((-\infty, \infty)\)</span> can be used for activation. However, just a few activations have been empirically designed that balance computational cost and effectiveness. One example we’ve seen before is the sigmoid. Another is a hyperbolic tangent, which behaves similar (domain/range) to the sigmoid. The most commonly used activation is the rectified linear unit (ReLU), which is</p>
+<p>\begin{equation}
+\sigma(x) = \left{\begin{array}{lr}
+x &amp; x &gt; 0\
+0 &amp; \textrm{otherwise}\
+\end{array}\right.
+\end{equation}</p>
+<div class="section" id="universal-approximation-theorem">
+<h3><span class="section-number">1.1.1. </span>Universal Approximation Theorem<a class="headerlink" href="#universal-approximation-theorem" title="Permalink to this headline">¶</a></h3>
+<p>One of the reasons that neural networks are a good choice at approximating unknown functions (<span class="math notranslate nohighlight">\(f(\vec{x})\)</span>) is that a neural network can approximate any function with a large enough network depth (number of layers) or width (size of hidden layers). <a class="reference external" href="http://papers.nips.cc/paper/7203-the-expressive-power-of-neural-networks-a-view-from-the-width">To be more specific</a>, any 1 dimensional function can be approximated by a depth 5 neural network with ReLU activation functions. The universal approximation theorem shows that neural networks are, in the limit of large depth or width, expressive enough to fit any function.</p>
+</div>
+</div>
+<div class="section" id="frameworks">
+<h2><span class="section-number">1.2. </span>Frameworks<a class="headerlink" href="#frameworks" title="Permalink to this headline">¶</a></h2>
+<p>Deep learning has lots of “gotchas” – easy to make mistakes that make it difficult to implement things yourself. This is especially true with numerical stability, which only reveals itself when your model fails to learn. We will move to a bit of a more abstract software framework than JAX. I may update this, but for now we’ll use <a class="reference external" href="https://keras.io/">Keras</a>.</p>
+</div>
+<div class="section" id="discussion">
+<h2><span class="section-number">1.3. </span>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>When it comes to introducing deep learning, I will be as terse as possible. There are good learning resources out there. You should use some of the reading above and tutorials put out by Keras (or PyTorch) to get familiar with the concepts of neural networks and learning.</p>
+</div>
+<div class="section" id="revisiting-solubity-model">
+<h2><span class="section-number">1.4. </span>Revisiting Solubity Model<a class="headerlink" href="#revisiting-solubity-model" title="Permalink to this headline">¶</a></h2>
+<p>We’ll see our first example of deep learning by revisiting the solubility dataset with a two layer dense neural network.</p>
+</div>
+<div class="section" id="running-this-notebook">
+<h2><span class="section-number">1.5. </span>Running This Notebook<a class="headerlink" href="#running-this-notebook" title="Permalink to this headline">¶</a></h2>
+<p>Click the  <i aria-label="Launch interactive content" class="fas fa-rocket"></i>  above to launch this page as an interactive Google Colab. See details below on installing packages, either on your own environment or on Google Colab</p>
+<div class="dropdown admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To install packages, execute this code in a new cell</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install matplotlib numpy pandas seaborn tensorflow
+</pre></div>
+</div>
+</div>
+<p>The hidden cells below sets-up our imports and/or install necessary packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;dark&#39;</span><span class="p">,</span>  <span class="p">{</span><span class="s1">&#39;xtick.bottom&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;ytick.left&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;xtick.color&#39;</span><span class="p">:</span> <span class="s1">&#39;#666666&#39;</span><span class="p">,</span> <span class="s1">&#39;ytick.color&#39;</span><span class="p">:</span> <span class="s1">&#39;#666666&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;axes.edgecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;#666666&#39;</span><span class="p">,</span> <span class="s1">&#39;axes.linewidth&#39;</span><span class="p">:</span>     <span class="mf">0.8</span> <span class="p">})</span>
+<span class="n">color_cycle</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#1BBC9B&#39;</span><span class="p">,</span> <span class="s1">&#39;#F06060&#39;</span><span class="p">,</span> <span class="s1">&#39;#5C4B51&#39;</span><span class="p">,</span> <span class="s1">&#39;#F3B562&#39;</span><span class="p">,</span> <span class="s1">&#39;#6e5687&#39;</span><span class="p">]</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color_cycle</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="load-data">
+<h3><span class="section-number">1.5.1. </span>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h3>
+<p>We download the data and load it into a <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> data frame and then standardize our features as before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soldata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://dataverse.harvard.edu/api/access/datafile/3407241?format=original&amp;gbrecs=true&#39;</span><span class="p">)</span>
+<span class="n">features_start_at</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soldata</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;MolWt&#39;</span><span class="p">)</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">soldata</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">features_start_at</span><span class="p">:]</span>
+<span class="c1"># standardize the features</span>
+<span class="n">soldata</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span> <span class="o">-=</span> <span class="n">soldata</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">soldata</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span> <span class="o">/=</span> <span class="n">soldata</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prepare-data-for-keras">
+<h2><span class="section-number">1.6. </span>Prepare Data for Keras<a class="headerlink" href="#prepare-data-for-keras" title="Permalink to this headline">¶</a></h2>
+<p>The deep learning libraries simplify many common tasks, like splitting data and building layers. This code below builds our dataset from numpy arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">soldata</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">soldata</span><span class="p">[</span><span class="s1">&#39;Solubility&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">soldata</span><span class="p">)</span>
+<span class="n">test_N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">full_data</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">test_N</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">full_data</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="n">test_N</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we used <code class="docutils literal notranslate"><span class="pre">skip</span></code> and <code class="docutils literal notranslate"><span class="pre">take</span></code> to split our dataset into two pieces and then created batches of data.</p>
+</div>
+<div class="section" id="neural-network">
+<h2><span class="section-number">1.7. </span>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this headline">¶</a></h2>
+<p>Now we build our neural network model. In this case, our <span class="math notranslate nohighlight">\(g(\vec{x}) = \sigma\left(\mathbf{W^0}\vec{x} + \vec{b}\right)\)</span>. We will call the fucntion <span class="math notranslate nohighlight">\(g(\vec{x})\)</span> a <em>hidden layer</em>. This is because we do not observe its output. Remember, the solubility will be <span class="math notranslate nohighlight">\(y = \vec{w}g(\vec{x}) + b\)</span>. We’ll choose our activation, <span class="math notranslate nohighlight">\(\sigma(\cdot)\)</span>, to be tanh and the output dimension of the hidden-layer to be 32. You can read more about this <a class="reference external" href="https://keras.io/guides/sequential_model/">API here</a>, however you should be able to understand the process from the function names and comments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># our hidden layer</span>
+<span class="c1"># We only need to define the output dimension - 32.</span>
+<span class="n">hidden_layer</span> <span class="o">=</span>  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">)</span>
+<span class="c1"># Last layer - which we want to output one number</span>
+<span class="c1"># the predicted solubility. </span>
+<span class="n">output_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Now we put the layers into a sequential model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">hidden_layer</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">output_layer</span><span class="p">)</span>
+
+<span class="c1"># our model is complete</span>
+
+<span class="c1"># Try out our model on first few datapoints</span>
+<span class="n">model</span><span class="p">(</span><span class="n">soldata</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(3, 1), dtype=float32, numpy=
+array([[ 0.8077593 ],
+       [-0.31590286],
+       [-0.25628862]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see our model predicting the solubility for 3 molecules above. There is a warning about how our Pandas data is using float64 (double precision floating point numbers) but our model is using float32 (single precision), which doesn’t matter that much. It warns us because we are technically throwing out a little bit of precision, but our solubility has much more variance than the difference between 32 and 64 bit precision floating point numbers.</p>
+<p>At this point, we’ve defined how our model structure should work and it can be called on data. Now we need to train it! We prepare the model for training by calling <code class="docutils literal notranslate"><span class="pre">compile</span></code>, which is where we define our optimization (flavor of stochastic gradient descent) and loss</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;SGD&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look back to the amount of work it took to previously set-up loss and optimization process! Now we can train our model</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1/562 [..............................] - ETA: 2:25 - loss: 9.4965
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 75/562 [===&gt;..........................] - ETA: 0s - loss: 7.3908  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+151/562 [=======&gt;......................] - ETA: 0s - loss: 5.5828
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+227/562 [===========&gt;..................] - ETA: 0s - loss: 4.9544
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+309/562 [===============&gt;..............] - ETA: 0s - loss: 4.4698
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+389/562 [===================&gt;..........] - ETA: 0s - loss: 4.1018
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+467/562 [=======================&gt;......] - ETA: 0s - loss: 3.8122
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+551/562 [============================&gt;.] - ETA: 0s - loss: 3.5635
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 1s 641us/step - loss: 3.5327
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1371
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 2.4442
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+151/562 [=======&gt;......................] - ETA: 0s - loss: 2.2375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+225/562 [===========&gt;..................] - ETA: 0s - loss: 2.3072
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+303/562 [===============&gt;..............] - ETA: 0s - loss: 2.2823
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+382/562 [===================&gt;..........] - ETA: 0s - loss: 2.2129
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+447/562 [======================&gt;.......] - ETA: 0s - loss: 2.1473
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+526/562 [===========================&gt;..] - ETA: 0s - loss: 2.0731
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 676us/step - loss: 2.0428
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0446
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 75/562 [===&gt;..........................] - ETA: 0s - loss: 2.2403
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+153/562 [=======&gt;......................] - ETA: 0s - loss: 2.0626
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+231/562 [===========&gt;..................] - ETA: 0s - loss: 2.1402
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+310/562 [===============&gt;..............] - ETA: 0s - loss: 2.1159
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+389/562 [===================&gt;..........] - ETA: 0s - loss: 2.0517
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+475/562 [========================&gt;.....] - ETA: 0s - loss: 1.9730
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+558/562 [============================&gt;.] - ETA: 0s - loss: 1.9061
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 634us/step - loss: 1.9025
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 4/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9623
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 84/562 [===&gt;..........................] - ETA: 0s - loss: 2.1526
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+171/562 [========&gt;.....................] - ETA: 0s - loss: 2.0107
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+252/562 [============&gt;.................] - ETA: 0s - loss: 2.0642
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+312/562 [===============&gt;..............] - ETA: 0s - loss: 2.0361
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+390/562 [===================&gt;..........] - ETA: 0s - loss: 1.9724
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+472/562 [========================&gt;.....] - ETA: 0s - loss: 1.8985
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+548/562 [============================&gt;.] - ETA: 0s - loss: 1.8379
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 646us/step - loss: 1.8274
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 5/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9363
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 84/562 [===&gt;..........................] - ETA: 0s - loss: 2.1220
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+166/562 [=======&gt;......................] - ETA: 0s - loss: 1.9736
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+237/562 [===========&gt;..................] - ETA: 0s - loss: 2.0293
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+311/562 [===============&gt;..............] - ETA: 0s - loss: 1.9975
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+388/562 [===================&gt;..........] - ETA: 0s - loss: 1.9337
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+468/562 [=======================&gt;......] - ETA: 0s - loss: 1.8613
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+553/562 [============================&gt;.] - ETA: 0s - loss: 1.7942
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 640us/step - loss: 1.7873
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 6/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9364
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 86/562 [===&gt;..........................] - ETA: 0s - loss: 2.0975
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+170/562 [========&gt;.....................] - ETA: 0s - loss: 1.9585
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+250/562 [============&gt;.................] - ETA: 0s - loss: 2.0043
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+335/562 [================&gt;.............] - ETA: 0s - loss: 1.9545
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+410/562 [====================&gt;.........] - ETA: 0s - loss: 1.8878
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+486/562 [========================&gt;.....] - ETA: 0s - loss: 1.8209
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - ETA: 0s - loss: 1.7630
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 629us/step - loss: 1.7624
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 7/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9425
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 85/562 [===&gt;..........................] - ETA: 0s - loss: 2.0859
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+166/562 [=======&gt;......................] - ETA: 0s - loss: 1.9396
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+240/562 [===========&gt;..................] - ETA: 0s - loss: 1.9895
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+318/562 [===============&gt;..............] - ETA: 0s - loss: 1.9498
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+396/562 [====================&gt;.........] - ETA: 0s - loss: 1.8827
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+474/562 [========================&gt;.....] - ETA: 0s - loss: 1.8129
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+550/562 [============================&gt;.] - ETA: 0s - loss: 1.7536
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 643us/step - loss: 1.7448
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 8/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9480
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 82/562 [===&gt;..........................] - ETA: 0s - loss: 2.0794
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+156/562 [=======&gt;......................] - ETA: 0s - loss: 1.9206
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+226/562 [===========&gt;..................] - ETA: 0s - loss: 1.9745
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+302/562 [===============&gt;..............] - ETA: 0s - loss: 1.9457
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+380/562 [===================&gt;..........] - ETA: 0s - loss: 1.8816
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+450/562 [=======================&gt;......] - ETA: 0s - loss: 1.8182
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+526/562 [===========================&gt;..] - ETA: 0s - loss: 1.7557
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 672us/step - loss: 1.7298
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 9/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 2.0707
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+152/562 [=======&gt;......................] - ETA: 0s - loss: 1.9074
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+229/562 [===========&gt;..................] - ETA: 0s - loss: 1.9611
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+305/562 [===============&gt;..............] - ETA: 0s - loss: 1.9294
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+381/562 [===================&gt;..........] - ETA: 0s - loss: 1.8667
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+457/562 [=======================&gt;......] - ETA: 0s - loss: 1.7983
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>537/562 [===========================&gt;..] - ETA: 0s - loss: 1.7343
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 656us/step - loss: 1.7166
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 10/50
+
+  1/562 [..............................] - ETA: 1s - loss: 0.9536
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 85/562 [===&gt;..........................] - ETA: 0s - loss: 2.0523
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+169/562 [========&gt;.....................] - ETA: 0s - loss: 1.9076
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+239/562 [===========&gt;..................] - ETA: 0s - loss: 1.9487
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+314/562 [===============&gt;..............] - ETA: 0s - loss: 1.9105
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+392/562 [===================&gt;..........] - ETA: 0s - loss: 1.8443
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+466/562 [=======================&gt;......] - ETA: 0s - loss: 1.7786
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+543/562 [===========================&gt;..] - ETA: 0s - loss: 1.7185
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 652us/step - loss: 1.7051
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 11/50
+
+  1/562 [..............................] - ETA: 1s - loss: 0.9523
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 76/562 [===&gt;..........................] - ETA: 0s - loss: 2.0564
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+153/562 [=======&gt;......................] - ETA: 0s - loss: 1.8893
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+231/562 [===========&gt;..................] - ETA: 0s - loss: 1.9397
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+305/562 [===============&gt;..............] - ETA: 0s - loss: 1.9072
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+385/562 [===================&gt;..........] - ETA: 0s - loss: 1.8410
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+465/562 [=======================&gt;......] - ETA: 0s - loss: 1.7700
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+541/562 [===========================&gt;..] - ETA: 0s - loss: 1.7107
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 661us/step - loss: 1.6960
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 12/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9510
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 71/562 [==&gt;...........................] - ETA: 0s - loss: 2.0496
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+144/562 [======&gt;.......................] - ETA: 0s - loss: 1.8877
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+218/562 [==========&gt;...................] - ETA: 0s - loss: 1.9299
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+290/562 [==============&gt;...............] - ETA: 0s - loss: 1.9087
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+367/562 [==================&gt;...........] - ETA: 0s - loss: 1.8487
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+445/562 [======================&gt;.......] - ETA: 0s - loss: 1.7789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+524/562 [==========================&gt;...] - ETA: 0s - loss: 1.7149
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 673us/step - loss: 1.6880
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 13/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9499
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 2.0356
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/562 [=======&gt;......................] - ETA: 0s - loss: 1.8770
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+239/562 [===========&gt;..................] - ETA: 0s - loss: 1.9226
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+317/562 [===============&gt;..............] - ETA: 0s - loss: 1.8817
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+395/562 [====================&gt;.........] - ETA: 0s - loss: 1.8156
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+475/562 [========================&gt;.....] - ETA: 0s - loss: 1.7461
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+555/562 [============================&gt;.] - ETA: 0s - loss: 1.6860
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 640us/step - loss: 1.6807
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 14/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9527
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 2.0276
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+158/562 [=======&gt;......................] - ETA: 0s - loss: 1.8694
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+238/562 [===========&gt;..................] - ETA: 0s - loss: 1.9154
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+309/562 [===============&gt;..............] - ETA: 0s - loss: 1.8802
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+391/562 [===================&gt;..........] - ETA: 0s - loss: 1.8120
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+476/562 [========================&gt;.....] - ETA: 0s - loss: 1.7384
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+547/562 [============================&gt;.] - ETA: 0s - loss: 1.6846
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 648us/step - loss: 1.6741
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 15/50
+
+  1/562 [..............................] - ETA: 1s - loss: 0.9559
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 76/562 [===&gt;..........................] - ETA: 0s - loss: 2.0246
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+149/562 [======&gt;.......................] - ETA: 0s - loss: 1.8618
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+228/562 [===========&gt;..................] - ETA: 0s - loss: 1.9094
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+307/562 [===============&gt;..............] - ETA: 0s - loss: 1.8750
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+387/562 [===================&gt;..........] - ETA: 0s - loss: 1.8091
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+464/562 [=======================&gt;......] - ETA: 0s - loss: 1.7418
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+544/562 [============================&gt;.] - ETA: 0s - loss: 1.6805
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 651us/step - loss: 1.6680
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 16/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9556
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 79/562 [===&gt;..........................] - ETA: 0s - loss: 2.0152
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+155/562 [=======&gt;......................] - ETA: 0s - loss: 1.8563
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+230/562 [===========&gt;..................] - ETA: 0s - loss: 1.9027
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+306/562 [===============&gt;..............] - ETA: 0s - loss: 1.8688
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+387/562 [===================&gt;..........] - ETA: 0s - loss: 1.8023
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+466/562 [=======================&gt;......] - ETA: 0s - loss: 1.7335
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+545/562 [============================&gt;.] - ETA: 0s - loss: 1.6734
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 648us/step - loss: 1.6616
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 17/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9531
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 79/562 [===&gt;..........................] - ETA: 0s - loss: 2.0090
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+157/562 [=======&gt;......................] - ETA: 0s - loss: 1.8518
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+232/562 [===========&gt;..................] - ETA: 0s - loss: 1.8962
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+310/562 [===============&gt;..............] - ETA: 0s - loss: 1.8593
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+391/562 [===================&gt;..........] - ETA: 0s - loss: 1.7921
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+470/562 [========================&gt;.....] - ETA: 0s - loss: 1.7239
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+548/562 [============================&gt;.] - ETA: 0s - loss: 1.6653
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 647us/step - loss: 1.6555
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 18/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9460
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 83/562 [===&gt;..........................] - ETA: 0s - loss: 1.9964
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+170/562 [========&gt;.....................] - ETA: 0s - loss: 1.8546
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+245/562 [============&gt;.................] - ETA: 0s - loss: 1.8869
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+322/562 [================&gt;.............] - ETA: 0s - loss: 1.8430
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+401/562 [====================&gt;.........] - ETA: 0s - loss: 1.7759
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+481/562 [========================&gt;.....] - ETA: 0s - loss: 1.7083
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+556/562 [============================&gt;.] - ETA: 0s - loss: 1.6533
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 639us/step - loss: 1.6488
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 19/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9400
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 81/562 [===&gt;..........................] - ETA: 0s - loss: 1.9913
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+158/562 [=======&gt;......................] - ETA: 0s - loss: 1.8394
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+236/562 [===========&gt;..................] - ETA: 0s - loss: 1.8824
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+317/562 [===============&gt;..............] - ETA: 0s - loss: 1.8406
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+398/562 [====================&gt;.........] - ETA: 0s - loss: 1.7726
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+477/562 [========================&gt;.....] - ETA: 0s - loss: 1.7057
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+558/562 [============================&gt;.] - ETA: 0s - loss: 1.6464
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 633us/step - loss: 1.6432
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 20/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9393
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 1.9831
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+161/562 [=======&gt;......................] - ETA: 0s - loss: 1.8323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+241/562 [===========&gt;..................] - ETA: 0s - loss: 1.8718
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+326/562 [================&gt;.............] - ETA: 0s - loss: 1.8241
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+411/562 [====================&gt;.........] - ETA: 0s - loss: 1.7519
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+486/562 [========================&gt;.....] - ETA: 0s - loss: 1.6898
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+557/562 [============================&gt;.] - ETA: 0s - loss: 1.6386
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 637us/step - loss: 1.6348
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 21/50
+
+  1/562 [..............................] - ETA: 1s - loss: 0.9359
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 85/562 [===&gt;..........................] - ETA: 0s - loss: 1.9643
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+165/562 [=======&gt;......................] - ETA: 0s - loss: 1.8257
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+246/562 [============&gt;.................] - ETA: 0s - loss: 1.8615
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+327/562 [================&gt;.............] - ETA: 0s - loss: 1.8147
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+404/562 [====================&gt;.........] - ETA: 0s - loss: 1.7499
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+483/562 [========================&gt;.....] - ETA: 0s - loss: 1.6845
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+560/562 [============================&gt;.] - ETA: 0s - loss: 1.6294
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 631us/step - loss: 1.6275
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 22/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9366
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 1.9654
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+157/562 [=======&gt;......................] - ETA: 0s - loss: 1.8151
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+233/562 [===========&gt;..................] - ETA: 0s - loss: 1.8568
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+313/562 [===============&gt;..............] - ETA: 0s - loss: 1.8180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+392/562 [===================&gt;..........] - ETA: 0s - loss: 1.7536
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+472/562 [========================&gt;.....] - ETA: 0s - loss: 1.6864
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+549/562 [============================&gt;.] - ETA: 0s - loss: 1.6301
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 650us/step - loss: 1.6212
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 23/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9351
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 77/562 [===&gt;..........................] - ETA: 0s - loss: 1.9598
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+153/562 [=======&gt;......................] - ETA: 0s - loss: 1.8067
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+228/562 [===========&gt;..................] - ETA: 0s - loss: 1.8498
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+301/562 [===============&gt;..............] - ETA: 0s - loss: 1.8191
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+377/562 [===================&gt;..........] - ETA: 0s - loss: 1.7595
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+456/562 [=======================&gt;......] - ETA: 0s - loss: 1.6925
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+533/562 [===========================&gt;..] - ETA: 0s - loss: 1.6343
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 662us/step - loss: 1.6150
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 24/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9348
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 81/562 [===&gt;..........................] - ETA: 0s - loss: 1.9506
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/562 [=======&gt;......................] - ETA: 0s - loss: 1.8038
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+235/562 [===========&gt;..................] - ETA: 0s - loss: 1.8426
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+308/562 [===============&gt;..............] - ETA: 0s - loss: 1.8075
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+386/562 [===================&gt;..........] - ETA: 0s - loss: 1.7452
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+467/562 [=======================&gt;......] - ETA: 0s - loss: 1.6773
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+543/562 [===========================&gt;..] - ETA: 0s - loss: 1.6215
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 657us/step - loss: 1.6088
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 25/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9337
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 68/562 [==&gt;...........................] - ETA: 0s - loss: 1.9467
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+152/562 [=======&gt;......................] - ETA: 0s - loss: 1.7944
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+235/562 [===========&gt;..................] - ETA: 0s - loss: 1.8354
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+312/562 [===============&gt;..............] - ETA: 0s - loss: 1.7976
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+390/562 [===================&gt;..........] - ETA: 0s - loss: 1.7350
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+470/562 [========================&gt;.....] - ETA: 0s - loss: 1.6685
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+545/562 [============================&gt;.] - ETA: 0s - loss: 1.6140
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 649us/step - loss: 1.6027
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 26/50
+
+  1/562 [..............................] - ETA: 1s - loss: 0.9377
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 86/562 [===&gt;..........................] - ETA: 0s - loss: 1.9301
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+171/562 [========&gt;.....................] - ETA: 0s - loss: 1.8008
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+241/562 [===========&gt;..................] - ETA: 0s - loss: 1.8288
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+311/562 [===============&gt;..............] - ETA: 0s - loss: 1.7925
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+385/562 [===================&gt;..........] - ETA: 0s - loss: 1.7335
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+463/562 [=======================&gt;......] - ETA: 0s - loss: 1.6684
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+542/562 [===========================&gt;..] - ETA: 0s - loss: 1.6105
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 655us/step - loss: 1.5974
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 27/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9458
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 82/562 [===&gt;..........................] - ETA: 0s - loss: 1.9290
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+158/562 [=======&gt;......................] - ETA: 0s - loss: 1.7850
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+236/562 [===========&gt;..................] - ETA: 0s - loss: 1.8225
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+308/562 [===============&gt;..............] - ETA: 0s - loss: 1.7875
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+383/562 [===================&gt;..........] - ETA: 0s - loss: 1.7284
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+453/562 [=======================&gt;......] - ETA: 0s - loss: 1.6699
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+529/562 [===========================&gt;..] - ETA: 0s - loss: 1.6130
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 668us/step - loss: 1.5913
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 28/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9550
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 1.9270
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/562 [=======&gt;......................] - ETA: 0s - loss: 1.7809
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+236/562 [===========&gt;..................] - ETA: 0s - loss: 1.8168
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+315/562 [===============&gt;..............] - ETA: 0s - loss: 1.7768
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+392/562 [===================&gt;..........] - ETA: 0s - loss: 1.7151
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+469/562 [========================&gt;.....] - ETA: 0s - loss: 1.6518
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+548/562 [============================&gt;.] - ETA: 0s - loss: 1.5953
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 643us/step - loss: 1.5860
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 29/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9633
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 81/562 [===&gt;..........................] - ETA: 0s - loss: 1.9200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+159/562 [=======&gt;......................] - ETA: 0s - loss: 1.7751
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+236/562 [===========&gt;..................] - ETA: 0s - loss: 1.8107
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+314/562 [===============&gt;..............] - ETA: 0s - loss: 1.7713
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+394/562 [====================&gt;.........] - ETA: 0s - loss: 1.7074
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+474/562 [========================&gt;.....] - ETA: 0s - loss: 1.6423
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+553/562 [============================&gt;.] - ETA: 0s - loss: 1.5867
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 639us/step - loss: 1.5806
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 30/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9723
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 78/562 [===&gt;..........................] - ETA: 0s - loss: 1.9185
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+155/562 [=======&gt;......................] - ETA: 0s - loss: 1.7690
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+230/562 [===========&gt;..................] - ETA: 0s - loss: 1.8058
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+310/562 [===============&gt;..............] - ETA: 0s - loss: 1.7684
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+389/562 [===================&gt;..........] - ETA: 0s - loss: 1.7061
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+466/562 [=======================&gt;......] - ETA: 0s - loss: 1.6430
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+547/562 [============================&gt;.] - ETA: 0s - loss: 1.5853
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 645us/step - loss: 1.5754
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 31/50
+
+  1/562 [..............................] - ETA: 0s - loss: 0.9814
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 84/562 [===&gt;..........................] - ETA: 0s - loss: 1.9057
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+170/562 [========&gt;.....................] - ETA: 0s - loss: 1.7723
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+254/562 [============&gt;.................] - ETA: 0s - loss: 1.7942
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+330/562 [================&gt;.............] - ETA: 0s - loss: 1.7482
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+409/562 [====================&gt;.........] - ETA: 0s - loss: 1.6836
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+488/562 [=========================&gt;....] - ETA: 0s - loss: 1.6212
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 625us/step - loss: 1.5703
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 32/50
+
+  1/562 [..............................] - ETA: 1s - loss: 0.9913
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 76/562 [===&gt;..........................] - ETA: 0s - loss: 1.9103
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+153/562 [=======&gt;......................] - ETA: 0s - loss: 1.7590
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+228/562 [===========&gt;..................] - ETA: 0s - loss: 1.7949
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+307/562 [===============&gt;..............] - ETA: 0s - loss: 1.7592
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+387/562 [===================&gt;..........] - ETA: 0s - loss: 1.6967
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+466/562 [=======================&gt;......] - ETA: 0s - loss: 1.6323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+544/562 [============================&gt;.] - ETA: 0s - loss: 1.5769
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 649us/step - loss: 1.5653
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 33/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0018
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 79/562 [===&gt;..........................] - ETA: 0s - loss: 1.9027
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+159/562 [=======&gt;......................] - ETA: 0s - loss: 1.7556
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+236/562 [===========&gt;..................] - ETA: 0s - loss: 1.7883
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+309/562 [===============&gt;..............] - ETA: 0s - loss: 1.7521
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+376/562 [===================&gt;..........] - ETA: 0s - loss: 1.7003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+456/562 [=======================&gt;......] - ETA: 0s - loss: 1.6348
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+530/562 [===========================&gt;..] - ETA: 0s - loss: 1.5808
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 667us/step - loss: 1.5602
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 34/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0132
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 79/562 [===&gt;..........................] - ETA: 0s - loss: 1.8974
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/562 [=======&gt;......................] - ETA: 0s - loss: 1.7507
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+239/562 [===========&gt;..................] - ETA: 0s - loss: 1.7819
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+316/562 [===============&gt;..............] - ETA: 0s - loss: 1.7414
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+393/562 [===================&gt;..........] - ETA: 0s - loss: 1.6805
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+471/562 [========================&gt;.....] - ETA: 0s - loss: 1.6179
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+550/562 [============================&gt;.] - ETA: 0s - loss: 1.5629
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 644us/step - loss: 1.5551
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 35/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0258
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 72/562 [==&gt;...........................] - ETA: 0s - loss: 1.8963
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+141/562 [======&gt;.......................] - ETA: 0s - loss: 1.7536
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+210/562 [==========&gt;...................] - ETA: 0s - loss: 1.7759
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+283/562 [==============&gt;...............] - ETA: 0s - loss: 1.7567
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+361/562 [==================&gt;...........] - ETA: 0s - loss: 1.7012
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+434/562 [======================&gt;.......] - ETA: 0s - loss: 1.6412
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+512/562 [==========================&gt;...] - ETA: 0s - loss: 1.5825
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 690us/step - loss: 1.5498
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 36/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0399
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 73/562 [==&gt;...........................] - ETA: 0s - loss: 1.8901
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+144/562 [======&gt;.......................] - ETA: 0s - loss: 1.7433
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+215/562 [==========&gt;...................] - ETA: 0s - loss: 1.7708
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+281/562 [==============&gt;...............] - ETA: 0s - loss: 1.7517
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+359/562 [==================&gt;...........] - ETA: 0s - loss: 1.6969
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+439/562 [======================&gt;.......] - ETA: 0s - loss: 1.6315
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+518/562 [==========================&gt;...] - ETA: 0s - loss: 1.5730
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 678us/step - loss: 1.5446
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 37/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0564
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 81/562 [===&gt;..........................] - ETA: 0s - loss: 1.8780
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+163/562 [=======&gt;......................] - ETA: 0s - loss: 1.7352
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+243/562 [===========&gt;..................] - ETA: 0s - loss: 1.7629
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+314/562 [===============&gt;..............] - ETA: 0s - loss: 1.7250
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+389/562 [===================&gt;..........] - ETA: 0s - loss: 1.6667
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+464/562 [=======================&gt;......] - ETA: 0s - loss: 1.6067
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+539/562 [===========================&gt;..] - ETA: 0s - loss: 1.5540
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 658us/step - loss: 1.5396
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 38/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0732
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 78/562 [===&gt;..........................] - ETA: 0s - loss: 1.8765
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+157/562 [=======&gt;......................] - ETA: 0s - loss: 1.7285
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+232/562 [===========&gt;..................] - ETA: 0s - loss: 1.7597
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+306/562 [===============&gt;..............] - ETA: 0s - loss: 1.7250
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+374/562 [==================&gt;...........] - ETA: 0s - loss: 1.6736
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+448/562 [======================&gt;.......] - ETA: 0s - loss: 1.6139
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+522/562 [==========================&gt;...] - ETA: 0s - loss: 1.5601
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 679us/step - loss: 1.5347
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 39/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0876
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 76/562 [===&gt;..........................] - ETA: 0s - loss: 1.8738
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+154/562 [=======&gt;......................] - ETA: 0s - loss: 1.7234
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+228/562 [===========&gt;..................] - ETA: 0s - loss: 1.7552
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+304/562 [===============&gt;..............] - ETA: 0s - loss: 1.7212
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+377/562 [===================&gt;..........] - ETA: 0s - loss: 1.6660
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+450/562 [=======================&gt;......] - ETA: 0s - loss: 1.6073
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+525/562 [===========================&gt;..] - ETA: 0s - loss: 1.5533
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 674us/step - loss: 1.5300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 40/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.0997
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 76/562 [===&gt;..........................] - ETA: 0s - loss: 1.8698
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+153/562 [=======&gt;......................] - ETA: 0s - loss: 1.7194
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+228/562 [===========&gt;..................] - ETA: 0s - loss: 1.7504
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+302/562 [===============&gt;..............] - ETA: 0s - loss: 1.7175
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+377/562 [===================&gt;..........] - ETA: 0s - loss: 1.6611
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+454/562 [=======================&gt;......] - ETA: 0s - loss: 1.5994
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+529/562 [===========================&gt;..] - ETA: 0s - loss: 1.5460
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 672us/step - loss: 1.5254
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 41/50
+
+  1/562 [..............................] - ETA: 1s - loss: 1.1093
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 70/562 [==&gt;...........................] - ETA: 0s - loss: 1.8676
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+149/562 [======&gt;.......................] - ETA: 0s - loss: 1.7164
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+231/562 [===========&gt;..................] - ETA: 0s - loss: 1.7455
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+306/562 [===============&gt;..............] - ETA: 0s - loss: 1.7101
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+381/562 [===================&gt;..........] - ETA: 0s - loss: 1.6531
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+460/562 [=======================&gt;......] - ETA: 0s - loss: 1.5902
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+537/562 [===========================&gt;..] - ETA: 0s - loss: 1.5364
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 659us/step - loss: 1.5210
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 42/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1166
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 86/562 [===&gt;..........................] - ETA: 0s - loss: 1.8491
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+171/562 [========&gt;.....................] - ETA: 0s - loss: 1.7194
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+254/562 [============&gt;.................] - ETA: 0s - loss: 1.7344
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+340/562 [=================&gt;............] - ETA: 0s - loss: 1.6810
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+423/562 [=====================&gt;........] - ETA: 0s - loss: 1.6145
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+503/562 [=========================&gt;....] - ETA: 0s - loss: 1.5549
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 614us/step - loss: 1.5168
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 43/50
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1/562 [..............................] - ETA: 1s - loss: 1.1219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 69/562 [==&gt;...........................] - ETA: 0s - loss: 1.8593
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+134/562 [======&gt;.......................] - ETA: 0s - loss: 1.7297
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+212/562 [==========&gt;...................] - ETA: 0s - loss: 1.7369
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+292/562 [==============&gt;...............] - ETA: 0s - loss: 1.7100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+372/562 [==================&gt;...........] - ETA: 0s - loss: 1.6514
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+454/562 [=======================&gt;......] - ETA: 0s - loss: 1.5860
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+541/562 [===========================&gt;..] - ETA: 0s - loss: 1.5255
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 652us/step - loss: 1.5126
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 44/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1256
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 84/562 [===&gt;..........................] - ETA: 0s - loss: 1.8450
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+170/562 [========&gt;.....................] - ETA: 0s - loss: 1.7110
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+254/562 [============&gt;.................] - ETA: 0s - loss: 1.7256
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+335/562 [================&gt;.............] - ETA: 0s - loss: 1.6759
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+416/562 [=====================&gt;........] - ETA: 0s - loss: 1.6114
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+494/562 [=========================&gt;....] - ETA: 0s - loss: 1.5529
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 616us/step - loss: 1.5086
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 45/50
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1/562 [..............................] - ETA: 1s - loss: 1.1282
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 1.8467
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+159/562 [=======&gt;......................] - ETA: 0s - loss: 1.7022
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+235/562 [===========&gt;..................] - ETA: 0s - loss: 1.7276
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+310/562 [===============&gt;..............] - ETA: 0s - loss: 1.6895
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+384/562 [===================&gt;..........] - ETA: 0s - loss: 1.6331
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+458/562 [=======================&gt;......] - ETA: 0s - loss: 1.5747
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+537/562 [===========================&gt;..] - ETA: 0s - loss: 1.5200
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 659us/step - loss: 1.5048
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 46/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 84/562 [===&gt;..........................] - ETA: 0s - loss: 1.8371
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+166/562 [=======&gt;......................] - ETA: 0s - loss: 1.7010
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+244/562 [============&gt;.................] - ETA: 0s - loss: 1.7211
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+321/562 [================&gt;.............] - ETA: 0s - loss: 1.6777
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+402/562 [====================&gt;.........] - ETA: 0s - loss: 1.6144
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+482/562 [========================&gt;.....] - ETA: 0s - loss: 1.5535
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+560/562 [============================&gt;.] - ETA: 0s - loss: 1.5027
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 632us/step - loss: 1.5010
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 47/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1313
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 80/562 [===&gt;..........................] - ETA: 0s - loss: 1.8385
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+160/562 [=======&gt;......................] - ETA: 0s - loss: 1.6952
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+241/562 [===========&gt;..................] - ETA: 0s - loss: 1.7180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+319/562 [================&gt;.............] - ETA: 0s - loss: 1.6750
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+395/562 [====================&gt;.........] - ETA: 0s - loss: 1.6161
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+472/562 [========================&gt;.....] - ETA: 0s - loss: 1.5566
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+554/562 [============================&gt;.] - ETA: 0s - loss: 1.5024
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 640us/step - loss: 1.4973
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 48/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1322
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 81/562 [===&gt;..........................] - ETA: 0s - loss: 1.8332
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+165/562 [=======&gt;......................] - ETA: 0s - loss: 1.6932
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+231/562 [===========&gt;..................] - ETA: 0s - loss: 1.7162
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+312/562 [===============&gt;..............] - ETA: 0s - loss: 1.6758
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+394/562 [====================&gt;.........] - ETA: 0s - loss: 1.6129
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+467/562 [=======================&gt;......] - ETA: 0s - loss: 1.5563
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+539/562 [===========================&gt;..] - ETA: 0s - loss: 1.5075
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 663us/step - loss: 1.4936
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 49/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1329
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 85/562 [===&gt;..........................] - ETA: 0s - loss: 1.8231
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+170/562 [========&gt;.....................] - ETA: 0s - loss: 1.6925
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+248/562 [============&gt;.................] - ETA: 0s - loss: 1.7075
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+329/562 [================&gt;.............] - ETA: 0s - loss: 1.6597
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+404/562 [====================&gt;.........] - ETA: 0s - loss: 1.6009
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+477/562 [========================&gt;.....] - ETA: 0s - loss: 1.5455
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>535/562 [===========================&gt;..] - ETA: 0s - loss: 1.5062
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 662us/step - loss: 1.4900
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 50/50
+
+  1/562 [..............................] - ETA: 0s - loss: 1.1334
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 82/562 [===&gt;..........................] - ETA: 0s - loss: 1.8236
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+168/562 [=======&gt;......................] - ETA: 0s - loss: 1.6875
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+248/562 [============&gt;.................] - ETA: 0s - loss: 1.7037
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+325/562 [================&gt;.............] - ETA: 0s - loss: 1.6587
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+402/562 [====================&gt;.........] - ETA: 0s - loss: 1.5987
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+486/562 [========================&gt;.....] - ETA: 0s - loss: 1.5356
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+562/562 [==============================] - 0s 627us/step - loss: 1.4865
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tensorflow.python.keras.callbacks.History at 0x7f8d2c0cdd30&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>That was quite simple!</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>An epoch is one iteration over the whole dataset, regardless of batch size.</p>
+</div>
+<p>For reference, we got a loss about as low as 3 in our previous work. It was also much faster, thanks to the optimizations. Now let’s see how our model did on the test data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get model predictions on test data and get labels</span>
+<span class="c1"># squeeze to remove extra dimensions</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span>
+<span class="n">test_y</span> <span class="o">=</span> <span class="n">soldata</span><span class="p">[</span><span class="s1">&#39;Solubility&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="n">test_N</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Measured Solubility $y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Solubility $\hat</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;correlation = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;loss = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">test_y</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/introduction_16_0.png" src="../_images/introduction_16_0.png" />
+</div>
+</div>
+<p>This performance is better than our simple linear model.</p>
+</div>
+<div class="section" id="chapter-summary">
+<h2><span class="section-number">1.8. </span>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Deep learning is a category of machine learning that utilizes neural networks for classification and regression of data.</p></li>
+<li><p>Neural networks are a series of operations with matrices of adjustable parameters.</p></li>
+<li><p>A neural network transforms input features into a new set of features that can be subsequently used for regression or classification.</p></li>
+<li><p>The most common layer is the dense layer. Each input element affects each output element. It is defined by the desired output feature shape and the activation function.</p></li>
+<li><p>With enough layers or wide enough hidden layers, neural networks can approximate unknown functions.</p></li>
+<li><p>Hidden layers are called such because we do not observe the output from one.</p></li>
+<li><p>Using libraries such as TensorFlow, it becomes easy to split data into training and testing, but also to build layers in the neural network.</p></li>
+<li><p>Building a neural network allows us to predict various properties of molecules, such as solubility.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./dl"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../ml/classification.html" title="previous page"><span class="section-number">2. </span>Classification</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Andrew D. White<br/>
+        
+            &copy; Copyright 2020.<br/>
+          <div class="extra_footer">
+            <a href="http://thewhitelab.org">thewhitelab.org</a> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
