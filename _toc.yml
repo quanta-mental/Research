@@ -10,21 +10,13 @@
   numbered: true
   sections:
     - file: ml/introduction
-    - file: ml/regression
     - file: ml/classification
-    - file: ml/kernel
 
 - part: C. Deep Learning
   numbered: true
   sections:
     - file: dl/introduction
-    - file: dl/layers
-    - file: dl/gnn
-    - file: dl/attention
-    - file: dl/data
-    - file: dl/VAE
-    - file: dl/flows
-    - file: dl/Equivariant
+
 
 - part: D. Applications
   numbered: true
